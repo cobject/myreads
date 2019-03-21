@@ -1,5 +1,6 @@
 import React from 'react'
 // import * as BooksAPI from './BooksAPI'
+import ListBooksContent from './ListBooksContent'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -42,6 +43,7 @@ class BooksApp extends React.Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
+            <ListBooksContent />
             <div className="list-books-content">
               <div>
                 <div className="bookshelf">
