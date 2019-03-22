@@ -12,19 +12,28 @@ TBD
 2. Persist data in the application
 3. Routing application
 
+# Installation
+
+1. install package
+   `$npm install`
+
+2. start application
+   `$npm start`
+
+
 
 # Checklist
 
 ## Application Setup
 
-- [ ] Is the application easy to install and start?
-- [ ] Does the application include README with clear installation and launch instructions?
+- [x] Is the application easy to install and start?
+- [x] Does the application include README with clear installation and launch instructions?
 
 ## Main Page
 
-- [ ] Does the main page show three categories (or “bookshelves”) for books (currently reading, want to read, and read)?
-- [ ] Does the main page allow users to move books between shelves?
-- [ ] Does information persist between page refreshes?
+- [x] Does the main page show three categories (or “bookshelves”) for books (currently reading, want to read, and read)?
+- [x] Does the main page allow users to move books between shelves?
+- [x] Does information persist between page refreshes?
 
 ## Search Page
 
@@ -39,8 +48,8 @@ TBD
 
 ## Code Functionality
 
-- [ ] Does the project code handle state management appropriately?
-- [ ] Does the code run without errors? Is the code free of warnings that resulted from not following the best practices listed in the documentation, such as using key for list items? Is the code formatted properly?
+- [x] Does the project code handle state management appropriately?
+- [x] Does the code run without errors? Is the code free of warnings that resulted from not following the best practices listed in the documentation, such as using key for list items? Is the code formatted properly?
 
 # Style Guide
 

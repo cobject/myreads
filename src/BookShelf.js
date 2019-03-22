@@ -4,16 +4,6 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class BookShelf extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            title: this.props.title,
-            shelf: this.getTypeOfShelf(this.props.title),
-            books: []
-        }
-    }
-
     getTypeOfShelf(title) {
         if(title === 'Current Reading') {
             return 'currentlyReading';
@@ -27,24 +17,31 @@ class BookShelf extends React.Component {
         }
     }
 
-    componentDidMount() {
-        BooksAPI.getAll().then(books => 
-            this.setState({books: books.filter(book => book.shelf === this.state.shelf)})
+    onShelfChanged = (e, id) => {
+        const shelf = e.target.value;
+        BooksAPI.update({id: id}, shelf).then(res =>
+            this.props.onBooksChanged()
         );
     }
-    
+
     render() {
+        const shelf = this.getTypeOfShelf(this.props.title);
+        const books = this.props.books.filter(book => book.shelf === shelf);
+
         return (
             <div className="bookshelf">
-                <h2 className="bookshelf-title">{this.state.title}</h2>
+                <h2 className="bookshelf-title">{this.props.title}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {this.state.books.map((book) => (
+                        {books.map((book) => (
                             <li key={book.id}>
-                                <Book 
+                                <Book
+                                    id={book.id}
                                     author={book.authors}
+                                    shelf={shelf}
                                     title={book.title}
                                     bgImage={book.imageLinks.smallThumbnail}
+                                    onChange={this.onShelfChanged}
                                 />
                             </li>
                         ))}
