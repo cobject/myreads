@@ -6,9 +6,9 @@ class ListBooksContent extends React.Component {
     render() {
         return (
             <div className="list-books-content">
-                <BookShelf />
-                <BookShelf />
-                <BookShelf />
+                <BookShelf title={'Current Reading'}/>
+                <BookShelf title={'Want to Read'}/>
+                <BookShelf title={'Read'}/>
             </div>
         )
     }
