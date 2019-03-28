@@ -8,7 +8,6 @@ class ListBooksContent extends React.Component {
         super(props);
 
         this.state = {
-            refresh: true,
             books: []
         }
     }
@@ -16,10 +15,10 @@ class ListBooksContent extends React.Component {
     componentDidMount() {
         BooksAPI.getAll().then(books => 
             this.setState({books: books})
-        );
+        );  
     }
 
-    onBooksChanged = () => {
+    handleBooksChanged = () => {
         BooksAPI.getAll().then(books => 
             this.setState({books: books})
         );
@@ -28,9 +27,9 @@ class ListBooksContent extends React.Component {
     render() {
         return (
             <div className="list-books-content">
-                <BookShelf title={'Current Reading'} books={this.state.books} onBooksChanged={this.onBooksChanged}/>
-                <BookShelf title={'Want to Read'} books={this.state.books} onBooksChanged={this.onBooksChanged}/>
-                <BookShelf title={'Read'} books={this.state.books} onBooksChanged={this.onBooksChanged}/>
+                <BookShelf title={'Current Reading'} books={this.state.books} onBooksChanged={this.handleBooksChanged}/>
+                <BookShelf title={'Want to Read'} books={this.state.books} onBooksChanged={this.handleBooksChanged}/>
+                <BookShelf title={'Read'} books={this.state.books} onBooksChanged={this.handleBooksChanged}/>
             </div>
         );
     }
