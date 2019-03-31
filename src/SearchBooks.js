@@ -7,8 +7,15 @@ class SearchBooks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            booksOnShelf: [],
             books: [],
         }
+    }
+
+    componentDidMount() {
+        BooksAPI.getAll().then(books => 
+            this.setState({booksOnShelf: books})
+        );  
     }
 
     handleChange = (e) => {
@@ -17,19 +24,16 @@ class SearchBooks extends React.Component {
                 books: [],
             })
         } else {
-            BooksAPI.search(e.target.value).then(result => {
-                if(result.error === undefined) {
-                    if(result && result.length > 0) {
-                        this.setState({
-                            books: result,
-                        })
-                    }
-                } else {
-                    this.setState({
-                        books: [],
-                    })
-                }
-            });
+            BooksAPI.search(e.target.value)
+                .then(result => result.error !== undefined ? [] : result)
+                .then(books => {
+                    books.forEach(book => {
+                        let matchBook = this.state.booksOnShelf.find((item) => (item.id === book.id));
+                        book.shelf = matchBook ? matchBook.shelf : "none";
+                    });
+                    return books;
+                })
+                .then(books => this.setState({books: books}))
         }
     }
 
