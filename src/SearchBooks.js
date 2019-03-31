@@ -17,10 +17,16 @@ class SearchBooks extends React.Component {
                 books: [],
             })
         } else {
-            BooksAPI.search(e.target.value).then(books => {
-                if(books && books.length > 0) {
+            BooksAPI.search(e.target.value).then(result => {
+                if(result.error === undefined) {
+                    if(result && result.length > 0) {
+                        this.setState({
+                            books: result,
+                        })
+                    }
+                } else {
                     this.setState({
-                        books: books,
+                        books: [],
                     })
                 }
             });
