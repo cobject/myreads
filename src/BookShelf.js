@@ -42,7 +42,7 @@ class BookShelf extends React.Component {
                                     author={book.authors}
                                     shelf={book.shelf ? book.shelf : "none"}
                                     title={book.title}
-                                    bgImage={book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : ""}
+                                    bgImage={book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : ""}
                                     onChange={this.handleShelfChanged}
                                 />
                             </li>
